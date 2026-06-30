@@ -47,7 +47,7 @@ const Contact = () => {
             <div className="min-w-0">
               <p className="text-xs sm:text-sm text-[#4b3528]">Email</p>
               <p className="text-xs sm:text-sm text-[#6c5145] truncate">
-                hello@vintagephotography.com
+                hello@neirahphotography.com
               </p>
             </div>
           </div>

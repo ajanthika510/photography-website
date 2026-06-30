@@ -185,59 +185,76 @@ const Services = () => {
 
       </div>
 
-      {/* Floral Camera */}
+     {/* Floral Camera */}
+{/* Floral Camera */}
 
-      <motion.div
+<motion.div
+  id="cameraDock"
 
-        id="cameraDock"
+  initial={{
+    opacity: 0,
+    scale: 0.8
+  }}
 
-        initial={{
-          opacity:0,
-          scale:.8
-        }}
+  whileInView={{
+    opacity: 1,
+    scale: [0.8, 1.08, 1]
+  }}
 
-        whileInView={{
-          opacity:1,
-          scale:[.8,1.08,1]
-        }}
+  viewport={{
+    once: true,
+    amount: 0.7
+  }}
 
-        viewport={{
-          once:true,
-          amount:.7
-        }}
+  transition={{
+    duration: 1
+  }}
 
-        transition={{
-          duration:1
-        }}
+  className="
+    absolute
+    left-1/2
+    -translate-x-1/2
+    bottom-[-55px]
+    z-50
+    pointer-events-none
+  "
+>
 
-        className="
-          absolute
-          left-1/2
-          -translate-x-1/2
-          bottom-[-80px]
-          z-50
-          pointer-events-none
-        "
+  <div
+    className="
+      w-32
+      h-32
+      sm:w-40
+      sm:h-40
+      md:w-48
+      md:h-48
+      lg:w-56
+      lg:h-56
+      rounded-full
+      overflow-hidden
+      shadow-xl
+      flex
+      items-center
+      justify-center
+      bg-[#E8D8CF]
+    "
+  >
 
-      >
+    <img
+      src={floralcam}
+      alt="Floral Camera"
 
-        <img
+      className="
+        w-full
+        h-full
+        object-contain
+        scale-110
+      "
+    />
 
-          src={floralcam}
+  </div>
 
-          alt="Floral Camera"
-
-          className="
-            w-44
-            sm:w-56
-            md:w-64
-            lg:w-72
-            drop-shadow-xl
-          "
-
-        />
-
-      </motion.div>
+</motion.div>
 
     </section>
   );
