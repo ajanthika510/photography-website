@@ -17,9 +17,12 @@ const Services = () => {
       id="services"
       className="
         relative
-        py-16
-        sm:py-20
-        lg:py-28
+        pt-16
+        pb-40
+        sm:pt-20
+        sm:pb-44
+        lg:pt-28
+        lg:pb-52
         px-5
         sm:px-8
         lg:px-12
@@ -33,12 +36,12 @@ const Services = () => {
     >
       {/* Header */}
 
-      <div className="text-center mb-10 sm:mb-14 lg:mb-16">
+      <div className="text-center mb-12 sm:mb-16">
         <motion.h2
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: .7 }}
+          transition={{ duration: 0.7 }}
           className="
             font-serif
             text-4xl
@@ -47,19 +50,19 @@ const Services = () => {
             lg:text-[64px]
           "
           style={{
-            color:"#4A3426"
+            color: "#4A3426",
           }}
         >
           Our Services
         </motion.h2>
 
         <motion.p
-          initial={{ opacity:0,y:15 }}
-          whileInView={{ opacity:.85,y:0 }}
-          viewport={{ once:true }}
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 0.85, y: 0 }}
+          viewport={{ once: true }}
           transition={{
-            duration:.7,
-            delay:.1
+            duration: 0.7,
+            delay: 0.1,
           }}
           className="
             mt-4
@@ -71,7 +74,7 @@ const Services = () => {
             md:text-xl
           "
           style={{
-            color:"#6B5A50"
+            color: "#6B5A50",
           }}
         >
           From intimate moments to grand celebrations,
@@ -81,78 +84,74 @@ const Services = () => {
 
       {/* Cards */}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-7">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-7 mb-20">
+        {servicesData.map((service, index) => {
+          const Icon = iconComponents[service.iconName] || Star;
 
-        {servicesData.map((service,index)=>{
-
-          const Icon =
-            iconComponents[service.iconName] || Star;
-
-          return(
-
+          return (
             <motion.div
-
               key={service.id}
-
               initial={{
-                opacity:0,
-                y:30
+                opacity: 0,
+                y: 30,
               }}
-
               whileInView={{
-                opacity:1,
-                y:0
+                opacity: 1,
+                y: 0,
               }}
-
               viewport={{
-                once:true
+                once: true,
               }}
-
               transition={{
-                duration:.6,
-                delay:index*.1
+                duration: 0.6,
+                delay: index * 0.1,
               }}
-
               whileHover={{
-                y:-8,
-                scale:1.02
-              }}
-
-              className="
-                rounded-2xl
-                p-6
-                flex
-                gap-5
-                shadow-md
-              "
-
+  y: -8,
+  scale: 1.03,
+}}
+whileTap={{
+  scale: 0.98,
+}}
+className="
+  relative
+  z-10
+  rounded-2xl
+  p-6
+  flex
+  gap-5
+  shadow-lg
+  transition-all
+  duration-500
+  ease-out
+  hover:shadow-xl
+"
               style={{
-                background:"#E8D8CF"
+                background: "#E8D8CF",
               }}
-
             >
-
               <div
-                className="
-                  w-16
-                  h-16
-                  rounded-full
-                  flex
-                  items-center
-                  justify-center
-                  shrink-0
-                "
+  className="
+    w-16
+    h-16
+    rounded-full
+    flex
+    items-center
+    justify-center
+    shrink-0
+    transition-all
+    duration-500
+    ease-out
+    group-hover:scale-110
+  "
                 style={{
-                  background:"#8B4A1E"
+                  background: "#8B4A1E",
                 }}
               >
-                <Icon
-                  className="w-7 h-7 text-[#F3E9E1]"
-                />
+                <Icon className="w-7 h-7 text-[#F3E9E1]" />
               </div>
 
               <div>
-
                 <h3
                   className="
                     font-serif
@@ -161,101 +160,94 @@ const Services = () => {
                     mb-2
                   "
                   style={{
-                    color:"#4A3426"
+                    color: "#4A3426",
                   }}
                 >
                   {service.title}
                 </h3>
 
                 <p
+                  className="leading-relaxed"
                   style={{
-                    color:"#6B5A50"
+                    color: "#6B5A50",
                   }}
                 >
                   {service.description}
                 </p>
-
               </div>
-
             </motion.div>
-
-          )
-
+          );
         })}
-
       </div>
+            {/* Decorative Floral Camera */}
 
-     {/* Floral Camera */}
-{/* Floral Camera */}
-
-<motion.div
-  id="cameraDock"
-
-  initial={{
-    opacity: 0,
-    scale: 0.8
-  }}
-
-  whileInView={{
-    opacity: 1,
-    scale: [0.8, 1.08, 1]
-  }}
-
-  viewport={{
-    once: true,
-    amount: 0.7
-  }}
-
-  transition={{
-    duration: 1
-  }}
-
-  className="
-    absolute
-    left-1/2
-    -translate-x-1/2
-    bottom-[-55px]
-    z-50
-    pointer-events-none
-  "
->
-
-  <div
-    className="
-      w-32
-      h-32
-      sm:w-40
-      sm:h-40
-      md:w-48
-      md:h-48
-      lg:w-56
-      lg:h-56
-      rounded-full
-      overflow-hidden
-      shadow-xl
-      flex
-      items-center
-      justify-center
-      bg-[#E8D8CF]
-    "
-  >
-
-    <img
-      src={floralcam}
-      alt="Floral Camera"
-
-      className="
-        w-full
-        h-full
-        object-contain
-        scale-110
-      "
-    />
-
-  </div>
-
-</motion.div>
-
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 40,
+          scale: 0.85,
+        }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+          scale: 1,
+        }}
+        viewport={{
+          once: true,
+          amount: 0.6,
+        }}
+        transition={{
+          duration: 0.9,
+          ease: "easeOut",
+        }}
+        className="
+          absolute
+          left-1/2
+          -translate-x-1/2
+          -bottom-28
+          z-20
+          pointer-events-none
+        "
+      >
+        <motion.div
+          animate={{
+  y: [0, -8, 0],
+  rotate: [0, 2, -2, 0],
+}}
+transition={{
+  duration: 6,
+  repeat: Infinity,
+  ease: "easeInOut",
+}}
+          className="
+            w-28
+            h-28
+            sm:w-36
+            sm:h-36
+            md:w-44
+            md:h-44
+            lg:w-48
+            lg:h-48
+            rounded-full
+            overflow-hidden
+            flex
+            items-center
+            justify-center
+          "
+        >
+          <img
+            src={floralcam}
+            alt="Vintage Floral Camera"
+            className="
+              w-full
+              h-full
+              object-contain
+              select-none
+            "
+            draggable={false}
+          />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

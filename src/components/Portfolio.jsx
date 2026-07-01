@@ -29,24 +29,27 @@ const Portfolio = () => {
         <div className="w-14 h-[1px] bg-vintage-gold/50 mx-auto mt-5" />
       </div>
 
-      {/* Portfolio Accordion */}
+      {/* Portfolio */}
       <div className="flex flex-col lg:flex-row gap-4 w-full h-auto lg:h-[520px] select-none">
-        {portfolioData.map((item, index) => {
+        {portfolioData.map((item) => {
           const isActive = activeCategory === item.id;
 
           return (
             <motion.div
               key={item.id}
               layout
-              onClick={() => setActiveCategory(item.id)}
               initial={false}
+              onClick={() => setActiveCategory(item.id)}
               transition={{
-                type: "spring",
-                stiffness: 120,
-                damping: 18,
+                layout: {
+                  type: "spring",
+                  stiffness: 120,
+                  damping: 18,
+                },
               }}
               whileHover={{
-                y: -4,
+                y: -8,
+                scale: 1.015,
               }}
               className={`
                 relative
@@ -55,8 +58,8 @@ const Portfolio = () => {
                 cursor-pointer
                 border
                 border-vintage-gold/10
-                hover:border-vintage-gold/30
-                shadow-lg
+                hover:border-vintage-gold/40
+                shadow-xl
                 transition-all
                 duration-500
 
@@ -68,74 +71,110 @@ const Portfolio = () => {
               `}
             >
               {/* Image */}
-              <div className="absolute inset-0">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-700 grayscale-[10%] sepia-[12%] brightness-[82%]"
-                  style={{
-                    transform: isActive
-                      ? "scale(1.06)"
-                      : "scale(1)",
-                  }}
-                />
+              <motion.img
+                src={item.image}
+                alt={item.title}
+                animate={{
+                  scale: isActive ? 1.07 : 1,
+                }}
+                whileHover={{
+                  scale: isActive ? 1.1 : 1.06,
+                }}
+                transition={{
+                  duration: 0.7,
+                  ease: "easeOut",
+                }}
+                className="
+                  absolute
+                  inset-0
+                  w-full
+                  h-full
+                  object-cover
+                  grayscale-[8%]
+                  sepia-[10%]
+                  brightness-[82%]
+                "
+              />
 
-                <div
-                  className={`absolute inset-0 transition-all duration-500 ${
-                    isActive
-                      ? "bg-black/35"
-                      : "bg-black/60 hover:bg-black/50"
-                  }`}
-                />
-              </div>
+              {/* Overlay */}
+              <motion.div
+                className="absolute inset-0"
+                animate={{
+                  backgroundColor: isActive
+                    ? "rgba(0,0,0,0.35)"
+                    : "rgba(0,0,0,0.62)",
+                }}
+                whileHover={{
+                  backgroundColor: isActive
+                    ? "rgba(0,0,0,0.25)"
+                    : "rgba(0,0,0,0.45)",
+                }}
+                transition={{
+                  duration: 0.35,
+                }}
+              />
 
-              {/* Collapsed */}
+              {/* Inactive Card */}
               <AnimatePresence mode="wait">
                 {!isActive && (
                   <motion.div
+                    key="collapsed"
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: 0.9 }}
+                    animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2 }}
                     className="absolute inset-0 flex items-center justify-center"
                   >
-                    <span
+                    <motion.span
+                      whileHover={{
+                        scale: 1.08,
+                        letterSpacing: "0.42em",
+                      }}
+                      transition={{
+                        duration: 0.25,
+                      }}
                       className="
                         font-serif
                         text-lg
                         sm:text-xl
                         lg:text-base
-                        tracking-[0.3em]
                         uppercase
-                        text-vintage-cream
+                        tracking-[0.32em]
+                        text-white
+                        drop-shadow-[0_3px_12px_rgba(0,0,0,1)]
                         whitespace-nowrap
                         lg:-rotate-90
+                        bg-black/25
+                        backdrop-blur-sm
+                        px-3
+                        py-2
+                        rounded-md
                       "
                     >
                       {item.title}
-                    </span>
+                    </motion.span>
                   </motion.div>
                 )}
               </AnimatePresence>
 
-              {/* Expanded */}
+              {/* Active Card */}
               <AnimatePresence>
                 {isActive && (
                   <motion.div
+                    key="expanded"
                     initial={{
                       opacity: 0,
-                      scale: 0.96,
+                      y: 20,
                     }}
                     animate={{
                       opacity: 1,
-                      scale: 1,
+                      y: 0,
                     }}
                     exit={{
                       opacity: 0,
                     }}
                     transition={{
                       delay: 0.15,
-                      duration: 0.4,
+                      duration: 0.45,
                     }}
                     className="
                       absolute
@@ -149,16 +188,19 @@ const Portfolio = () => {
                       sm:p-7
                       lg:p-8
                       bg-gradient-to-t
-                      from-black/80
-                      via-black/10
-                      to-black/25
-                      pointer-events-none
+                      from-black/50
+                      via-black/15
+                      to-transparent
+                      pointer-events-auto
                     "
                   >
                     <motion.h3
-                      initial={{ y: 20 }}
+                      initial={{ y: 30 }}
                       animate={{ y: 0 }}
-                      transition={{ delay: 0.2 }}
+                      transition={{
+                        delay: 0.2,
+                        duration: 0.4,
+                      }}
                       className="
                         font-serif
                         text-2xl
@@ -167,7 +209,8 @@ const Portfolio = () => {
                         lg:text-5xl
                         uppercase
                         tracking-[0.25em]
-                        text-vintage-cream
+                        text-white
+                        drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]
                         mb-4
                       "
                     >
@@ -175,14 +218,22 @@ const Portfolio = () => {
                     </motion.h3>
 
                     <motion.p
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.3 }}
+                      initial={{
+                        opacity: 0,
+                        y: 10,
+                      }}
+                      animate={{
+                        opacity: 1,
+                        y: 0,
+                      }}
+                      transition={{
+                        delay: 0.3,
+                      }}
                       className="
                         text-xs
                         sm:text-sm
                         lg:text-base
-                        text-vintage-cream/80
+                        text-vintage-cream/85
                         leading-relaxed
                         max-w-md
                       "
@@ -190,18 +241,26 @@ const Portfolio = () => {
                       {item.subtitle} — developed with classic analog character
                       and {item.film} film texture.
                     </motion.p>
-
-                    <motion.span
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.4 }}
+                                        <motion.span
+                      initial={{
+                        opacity: 0,
+                        y: 8,
+                      }}
+                      animate={{
+                        opacity: 1,
+                        y: 0,
+                      }}
+                      transition={{
+                        delay: 0.4,
+                        duration: 0.3,
+                      }}
                       className="
-                        mt-4
+                        mt-5
                         text-[10px]
                         sm:text-xs
                         uppercase
                         tracking-[0.3em]
-                        text-vintage-cream/60
+                        text-vintage-cream/70
                       "
                     >
                       {item.location} • {item.camera}
@@ -210,11 +269,50 @@ const Portfolio = () => {
                 )}
               </AnimatePresence>
 
-              {/* Decorative Border */}
+              {/* Decorative Active Border */}
               {isActive && (
                 <motion.div
                   layoutId="portfolio-border"
-                  className="absolute inset-0 border border-vintage-gold/30 rounded-2xl pointer-events-none"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{
+                    duration: 0.3,
+                  }}
+                  className="
+  font-serif
+  text-2xl
+  sm:text-3xl
+  md:text-4xl
+  lg:text-5xl
+  uppercase
+  tracking-[0.25em]
+  text-white
+  drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]
+  mb-4
+"
+                />
+              )}
+
+              {/* Glow Effect */}
+              {isActive && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{
+                    duration: 0.5,
+                  }}
+                  className="
+                    absolute
+                    inset-0
+                    rounded-2xl
+                    bg-gradient-to-t
+                    from-vintage-gold/5
+                    via-transparent
+                    to-transparent
+                    pointer-events-none
+                  "
                 />
               )}
             </motion.div>

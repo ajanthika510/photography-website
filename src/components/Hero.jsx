@@ -110,7 +110,7 @@ const Hero = ({ introStatus }) => {
           className="
             uppercase
             tracking-[0.4em]
-            text-[#9c6211]
+            text-[#763609]
             text-[10px]
             md:text-xs
             mb-4
@@ -127,7 +127,7 @@ const Hero = ({ introStatus }) => {
           className="
             font-serif
             font-semibold
-            text-[#4A3128]
+            text-[#542e20]
             text-5xl
             md:text-7xl
             xl:text-[7rem]
@@ -146,7 +146,7 @@ const Hero = ({ introStatus }) => {
             mt-2
             font-serif
             italic
-            text-[#9A744B]
+            text-[#8f4c05]
             text-2xl
             md:text-4xl
             lg:text-5xl
@@ -175,29 +175,41 @@ const Hero = ({ introStatus }) => {
 
         {/* BUTTON */}
         <motion.a
-          href="#portfolio"
-          initial={{ opacity: 0, y: 25 }}
-          animate={ready ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 1.1 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.98 }}
-          className="
-            inline-flex
-            mt-10
-            px-8
-            py-4
-            rounded-full
-            bg-[#6F4A2F]
-            text-white
-            uppercase
-            tracking-[0.25em]
-            text-xs
-            shadow-[0_12px_30px_rgba(92,63,40,.35)]
-          "
-        >
-          Explore Gallery
-        </motion.a>
-      </div>
+  href="#portfolio"
+  initial={{ opacity: 0, y: 25 }}
+  animate={ready ? { opacity: 1, y: 0 } : {}}
+  transition={{ delay: 1.1 }}
+  whileHover={{ 
+    scale: 1.05,
+    y: -3
+  }}
+  whileTap={{ scale: 0.98 }}
+
+  className="
+    inline-flex
+    mt-10
+    px-8
+    py-4
+    rounded-full
+    bg-[#a44908]
+    text-white
+    uppercase
+    tracking-[0.25em]
+    text-xs
+
+    shadow-[0_12px_30px_rgba(92,63,40,.35)]
+
+    transition-all
+    duration-300
+    ease-out
+
+    hover:bg-[#7d3505]
+    hover:shadow-[0_18px_40px_rgba(92,63,40,.5)]
+  "
+>
+  Explore Gallery
+</motion.a>
+</div>
 
       {/* SCROLL INDICATOR */}
       {ready && (

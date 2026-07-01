@@ -57,30 +57,79 @@ const About = () => {
 
             {/* Stats */}
 
-            <div className="grid grid-cols-2 gap-8 mt-12 max-w-md">
+            <div
+  className="
+    grid
+    grid-cols-2
+    gap-10
+    mt-12
+    max-w-md
+  "
+>
 
-              <div>
-                <h4 className="font-serif text-[#4D382C] font-semibold text-lg">
-                  Photo Captured
-                </h4>
+  <div className="text-center sm:text-left">
 
-                <p className="text-3xl lg:text-4xl font-serif text-[#4D382C] mt-3 tracking-[0.25em]">
-                  5000+
-                </p>
-              </div>
+    <p
+      className="
+        text-xs
+        uppercase
+        tracking-[0.3em]
+        text-[#6B554A]
+        mb-3
+      "
+    >
+      Photo Captured
+    </p>
 
-              <div>
-                <h4 className="font-serif text-[#4D382C] font-semibold text-lg">
-                  Years of Experience
-                </h4>
 
-                <p className="text-3xl lg:text-4xl font-serif text-[#4D382C] mt-3">
-                  10+
-                </p>
-              </div>
+    <h4
+      className="
+        font-serif
+        text-4xl
+        lg:text-5xl
+        font-semibold
+        text-[#4D382C]
+      "
+    >
+      5000+
+    </h4>
 
-            </div>
-          </motion.div>
+  </div>
+
+
+
+  <div className="text-center sm:text-left">
+
+    <p
+      className="
+        text-xs
+        uppercase
+        tracking-[0.3em]
+        text-[#6B554A]
+        mb-3
+      "
+    >
+      Years of Experience
+    </p>
+
+
+    <h4
+      className="
+        font-serif
+        text-4xl
+        lg:text-5xl
+        font-semibold
+        text-[#4D382C]
+      "
+    >
+      10+
+    </h4>
+
+  </div>
+
+
+</div>
+</motion.div>
 
           {/* IMAGE */}
 
@@ -127,11 +176,19 @@ const About = () => {
                 "
               >
                 <img
-                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=1200&q=80&auto=format&fit=crop"
-                  alt="Photographer"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=1200&q=80&auto=format&fit=crop"
+  alt="Photographer"
+  className="
+    w-full
+    h-full
+    object-cover
+    object-[center_20%]
+    scale-90
+    transition-transform
+    duration-700
+  "
+/>
+</div>
 
             </div>
           </motion.div>

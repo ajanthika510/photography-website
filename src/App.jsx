@@ -42,22 +42,21 @@ function App() {
       }}
     >
       <div
-        className={`
-          vintage-grain
-          min-h-screen
-          bg-vintage-dark
-          text-vintage-gold
-          selection:bg-vintage-gold
-          selection:text-vintage-cream
-          transition-colors
-          duration-500
-          ${
-            introStatus !== "reveal"
-              ? "h-screen overflow-hidden"
-              : ""
-          }
-        `}
-      >
+  className={`
+    vintage-grain
+    min-h-screen
+    bg-vintage-dark
+    transition-colors
+    duration-500
+    selection:bg-vintage-gold
+    selection:text-vintage-cream
+    ${
+      introStatus !== "reveal"
+        ? "h-screen overflow-hidden"
+        : ""
+    }
+  `}
+>
         {/* Navbar */}
         <Navbar introStatus={introStatus} />
 
