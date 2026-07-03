@@ -288,7 +288,7 @@ setTimeout(() => {
       <div className="border-t border-[#aa8577] mt-12 pt-5 flex justify-between text-[16px] text-[#62483d]">
 
         <p className="text-[16px]">
-          Photography Studio
+          Photograph
         </p>
 
         <p className="text-[16px]">
