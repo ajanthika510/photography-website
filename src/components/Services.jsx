@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { servicesData } from "../data/servicesData";
 import { Heart, Calendar, Home, Star } from "lucide-react";
 
-import floralcam from "../assets/Floracam.webp";
+import floralcam from "../assets/floracam.webp";
 
 const iconComponents = {
   Heart,
