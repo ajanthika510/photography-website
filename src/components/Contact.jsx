@@ -3,6 +3,7 @@ import { Mail, Phone } from "lucide-react";
 import { FaFacebook, FaInstagram, FaXTwitter } from "react-icons/fa6";
 import { useState } from "react";
 
+
 const Contact = () => {
 
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const Contact = () => {
     email: "",
     message: ""
   });
+const [showSuccess, setShowSuccess] = useState(false);
 
   const [errors, setErrors] = useState({});
 
@@ -53,7 +55,11 @@ const Contact = () => {
 
     setErrors({});
 
-    alert("Message sent! Aura will contact you soon.");
+setShowSuccess(true);
+
+setTimeout(() => {
+  setShowSuccess(false);
+}, 3000);
 
     setFormData({
       name: "",
@@ -101,8 +107,8 @@ const Contact = () => {
 
           <div className="flex items-center gap-4 bg-[#ddc0b3] rounded-lg px-4 py-4">
 
-            <div className="bg-[#7b3f0d] rounded-full p-2 text-white">
-              <Mail size={16}/>
+            <div className="bg-[#7b3f0d] rounded-full p-5  text-white ">
+              <Mail size={22}/>
             </div>
 
             <div>
@@ -122,8 +128,8 @@ const Contact = () => {
 
           <div className="flex items-center gap-4 bg-[#ddc0b3] rounded-lg px-4 py-4">
 
-            <div className="bg-[#7b3f0d] rounded-full p-2 text-white">
-              <Phone size={16}/>
+            <div className="bg-[#7b3f0d] rounded-full p-5 text-white">
+              <Phone size={22}/>
             </div>
 
             <div>
@@ -141,17 +147,17 @@ const Contact = () => {
           </div>
 
 
-          <div className="flex gap-3">
+          <div className="flex gap-5 py-15">
 
-            <div className="bg-[#7b3f0d] text-white p-2 rounded-full">
+            <div className="bg-[#7b3f0d] text-white text-2xl p-5 rounded-full">
               <FaInstagram/>
             </div>
 
-            <div className="bg-[#7b3f0d] text-white p-2 rounded-full">
+            <div className="bg-[#7b3f0d] text-white text-2xl p-5 rounded-full">
               <FaFacebook/>
             </div>
 
-            <div className="bg-[#7b3f0d] text-white p-2 rounded-full">
+            <div className="bg-[#7b3f0d] text-white text-2xl p-5 rounded-full">
               <FaXTwitter/>
             </div>
 
@@ -286,10 +292,50 @@ const Contact = () => {
         </p>
 
         <p className="text-[16px]">
-          © 2026 Neirah Photography. All rights reserved
+           © {new Date().getFullYear()} Photography. All rights reserved by NeirahTech
         </p>
 
       </div>
+
+      {/* SUCCESS POPUP */}
+{showSuccess && (
+  <motion.div
+    initial={{ opacity: 0, y: 20, scale: 0.9 }}
+    animate={{ opacity: 1, y: 0, scale: 1 }}
+    exit={{ opacity: 0 }}
+    className="
+      fixed
+      top-6
+      left-1/2
+      -translate-x-1/2
+      z-50
+      bg-[#f3e0d6]
+      border
+      border-[#8b4a1e]
+      shadow-xl
+      px-6
+      py-4
+      rounded-xl
+      flex
+      items-center
+      gap-3
+    "
+  >
+    {/* check icon */}
+    <div className="w-8 h-8 rounded-full bg-[#7b3f0d] flex items-center justify-center text-white">
+      ✓
+    </div>
+
+    <div>
+      <p className="text-[#4b3528] font-semibold">
+        Message Sent Successfully
+      </p>
+      <p className="text-sm text-[#6c5145]">
+        We’ll contact you soon
+      </p>
+    </div>
+  </motion.div>
+)}
 
 
     </section>

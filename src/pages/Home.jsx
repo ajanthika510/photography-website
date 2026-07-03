@@ -26,8 +26,6 @@ const Home = ({ introStatus }) => {
       {/* Contact Section */}
       <Contact />
 
-      {/* Premium Vintage Footer */}
-      <Footer/>
     </div>
   );
 };

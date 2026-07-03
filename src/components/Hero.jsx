@@ -110,7 +110,7 @@ const Hero = ({ introStatus }) => {
           className="
             uppercase
             tracking-[0.4em]
-            text-[#763609]
+            text-[#a44908]
             text-[10px]
             md:text-xs
             mb-4
@@ -203,7 +203,7 @@ const Hero = ({ introStatus }) => {
     duration-300
     ease-out
 
-    hover:bg-[#7d3505]
+    hover:bg-[#8f4c05]
     hover:shadow-[0_18px_40px_rgba(92,63,40,.5)]
   "
 >

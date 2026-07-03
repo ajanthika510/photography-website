@@ -1,6 +1,37 @@
-import { motion } from "framer-motion";
+import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 const About = () => {
+
+  // ✅ ALL HOOKS INSIDE COMPONENT
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const photos = useMotionValue(0);
+  const years = useMotionValue(0);
+
+  const photosDisplay = useTransform(photos, (v) => Math.floor(v));
+  const yearsDisplay = useTransform(years, (v) => Math.floor(v));
+
+  useEffect(() => {
+    if (isInView) {
+      const controls1 = animate(photos, 5000, {
+        duration: 2,
+        ease: "easeOut",
+      });
+
+      const controls2 = animate(years, 10, {
+        duration: 2,
+        ease: "easeOut",
+      });
+
+      return () => {
+        controls1.stop();
+        controls2.stop();
+      };
+    }
+  }, [isInView, photos, years]);
+
   return (
     <section
       id="about"
@@ -58,13 +89,8 @@ const About = () => {
             {/* Stats */}
 
             <div
-  className="
-    grid
-    grid-cols-2
-    gap-10
-    mt-12
-    max-w-md
-  "
+  ref={ref}
+  className="grid grid-cols-2 gap-10 mt-12 max-w-md"
 >
 
   <div className="text-center sm:text-left">
@@ -72,6 +98,7 @@ const About = () => {
     <p
       className="
         text-xs
+        font-bold
         uppercase
         tracking-[0.3em]
         text-[#6B554A]
@@ -91,7 +118,9 @@ const About = () => {
         text-[#4D382C]
       "
     >
-      5000+
+      <motion.span>
+  {photosDisplay}
+</motion.span>+
     </h4>
 
   </div>
@@ -103,6 +132,7 @@ const About = () => {
     <p
       className="
         text-xs
+        font-bold
         uppercase
         tracking-[0.3em]
         text-[#6B554A]
@@ -122,7 +152,9 @@ const About = () => {
         text-[#4D382C]
       "
     >
-      10+
+      <motion.span>
+  {yearsDisplay}
+</motion.span>+
     </h4>
 
   </div>
